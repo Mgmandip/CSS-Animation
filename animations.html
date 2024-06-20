@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        button{
+           margin-top: 20px;
+           margin-left: 40px;
+           background-color: aqua;
+        }
+
+        button:hover{
+            height: 30px;
+            width: 80px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            color: white;
+            background-color: blueviolet;
+            transition: height 5s, width 5s, background-color 3s;
+            
+        } 
+
+        
+
+        #circle {
+            margin-top: 50px;
+            margin-left: 20px;
+            width: 100px; 
+            height: 100px; 
+            background-color: #3498db; 
+            border-radius: 50%; 
+            animation: pulse 1s infinite; 
+        }
+
+        @keyframes pulse {
+
+            from{
+                transform: scale(1);
+            }
+
+            to{
+                transform: scale(1.2)
+            }
+        }
+
+        
+
+        .container {
+            width: 50px; 
+            height: 250px;
+            position: relative;
+            margin-left: 45px;
+            margin-top: 30px;
+            background-color: aquamarine;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+        }
+
+        .ball {
+            width: 50px; 
+            height: 50px; 
+            background-color: #e74c3c; 
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            animation: bounce 3s infinite;
+            animation-timing-function: ease-in-out; 
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                bottom: 0; 
+            }
+            50% {
+                bottom: 200px; 
+            }
+        }
+
+        .image-gallery {
+            margin-top: 30px;
+            margin-left: 30px;
+            display: flex;
+            flex-direction: row;
+          }
+
+        .image {
+            margin-left: 10px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+        to {
+              opacity: 1;
+            }
+        }
+
+        .image:nth-child(1) { animation-delay: 1s; }
+        .image:nth-child(2) { animation-delay: 1.5s; }
+        .image:nth-child(3) { animation-delay: 2s; }
+
+
+
+        .marquee {
+            margin-top: 20px;
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 5s linear infinite;
+        }
+        @keyframes marquee {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .card {
+            margin-top: 40px;
+            margin-left: 40px;
+            width: 200px;
+            height: 150px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card:hover {
+            transform: rotateY(180deg);
+        }
+        
+        .cards{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            backface-visibility: hidden;
+        }
+
+        .frontCard {
+            background-color: #3498db;
+        }
+
+          
+        .backCard {
+            transform: rotateY(180deg);
+            background-color: #2ecc71;
+        }
+
+        .loader {
+            margin-left: 40px;
+            width: 20px;
+            height: 20px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+        .progress-bar {
+            margin-top: 40px;
+            margin-left: 40px;
+            width: 20%;
+            background-color: rgb(222, 223, 224);
+        }
+
+        .progress-fill {
+            height: 20px;
+            background-color: #34db71;
+            width: 0;
+            transition: width 2s ease-in-out;
+        }
+        
+
+        nav {
+            height: 50px;
+            
+            background-color: rgb(248, 220, 183);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        nav .heading {
+            color: rgb(213, 87, 9);
+            font-size: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: rgb(206, 89, 17);;
+            text-decoration: none;
+            line-height: 50px;
+        }
+
+        h1{
+            padding-left: 30px;
+            font-size: 28px;
+        }
+
+        .menubox {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            transition: left 0.3s ease;
+        }
+
+        .menu-open {
+            right: 0;
+        }
+
+        .menubox span {
+            height: 2px;
+            width: 25px;
+            background: rgb(206, 89, 17);
+            margin-bottom: 4px;
+            border-radius: 5px;
+
+
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+
+        }
+
+        input[type=checkbox] {
+            display: none;
+        }
+
+
+        @media (max-width: 768px) {
+            .menubox {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: end;
+                width: 100%;
+                background-color: rgb(48, 47, 47);
+                position: absolute;
+                top: 50px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            input[type=checkbox]:checked ~ ul {
+                display: flex;
+            }
+
+
+            nav ul li {
+                margin-right: 30px;
+                margin-bottom: 10px;
+                width: 100%;
+                text-align: right;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <h1 class="heading">Nav Menu</h1>
+        <input type="checkbox" id="menu-toggle"  onclick="toggleMenu()">
+        <label class="menubox" for="menu-toggle" class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contacts</a></li>
+            <li><a href="#">Social</a></li>
+        </ul>
+    </nav>
+
+    <div>
+        <div id="btn">
+            <button>Submit</button>
+        </div>
+
+        <div id="circle">
+        </div>
+
+        <div class="container">
+            <div class="ball"></div>
+        </div>
+
+        <div class="image-gallery">
+            <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6P-cl1E37q-NzTW9Alw7Q_3ItvfaxLDCIpg&s" alt="Image 1">
+            <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzV_q87XuR1xQ-wKz-EcANW4rASgBFJIHJjA&s" alt="Image 2">
+            <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtZK_G4WVQyUrG_1YkRDf4zRJQCZkPZG8pQw&s" alt="Image 3">
+          </div>
+
+        <div class="marquee">
+            <span>Lorem ipsum dolor sit amet consectetur.</span>
+        </div>
+
+        <div class="card">
+            <div class="cards frontCard">
+              Blue Card
+            </div>
+            <div class="cards backCard">
+              Green Card
+            </div>
+        </div>
+
+        <div class="loader"></div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 50%;"></div>
+          </div>
+
+    </div>
+
+    <script>
+
+    function toggleMenu() {
+        const menu = document.getElementById('menu-toggle');
+        menu.classList.toggle('menu-open');
+    }
+
+    </script>
+    
+</body>
+</html>
